@@ -7,4 +7,9 @@ edition = "2021"
 
 [dependencies]
 sha256 = "1.1.2"
+# Rust实现的密码学库
 rust-crypto = "^0.2"
+# 序列化和反序列化
+bincode = "1.3.3"
+# 处理hex数据
+hex = "0.4.2"

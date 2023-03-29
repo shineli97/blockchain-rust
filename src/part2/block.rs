@@ -2,7 +2,7 @@
  * @Author: 李帅帅 shineli97@163.com
  * @Date: 2023-03-22 11:45:53
  * @LastEditors: 李帅帅 shineli97@163.com
- * @LastEditTime: 2023-03-23 18:16:38
+ * @LastEditTime: 2023-03-29 14:02:27
  * @FilePath: \blockchain-rust\src\part2\block.rs
  * @Description:
  */
@@ -14,15 +14,20 @@ pub struct Block {
     pub data: Vec<String>,
     pub prev_block_hash: String,
     pub hash: String,
+    pub nonce: i32,
 }
 
 impl Block {
     pub fn new(data: Vec<String>, pre_block_hash: String) -> Block {
         let now = SystemTime::now();
         let since_the_epoch = now.duration_since(UNIX_EPOCH).expect("Time went backwards");
-        
-
-        
+        let mut block = Block {
+            timestamp: since_the_epoch.as_micros(),
+            data: data,
+            prev_block_hash: pre_block_hash,
+            hash: String::new(),
+            nonce: 0,
+        };
         block.set_hash();
         block
     }
@@ -35,7 +40,7 @@ impl Block {
         self.hash = sha256.result_str();
     }
     pub fn new_genesis_block() -> Block {
-        let data = vec!["Genesis Block".to_string()];
-        Self::new(data, "0000".to_string())
+        let data = vec![String::from("Genesis Block")];
+        Self::new(data, String::from("0"))
     }
 }

@@ -8,8 +8,9 @@
  */
 mod part1;
 mod part2;
-use part2::proof_of_work::test_proof_of_work;
 use crate::part1::blockchain::BlockChain;
+use part2::proof_of_work::test_proof_of_work;
+
 fn main() {
     // test_part1()
     test_proof_of_work()
